@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	pool "github.com/yourusername/Concurrent_CLI_Task-Runner---Worker-Pool-in-Go/Pool"
+	pool "github.com/vivekchaurasia01/Concurrent_CLI_Task-Runner---Worker-Pool-in-Go/Pool"
 )
 
 type SleepJob struct {

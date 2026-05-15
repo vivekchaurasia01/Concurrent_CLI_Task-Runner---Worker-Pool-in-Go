@@ -1,4 +1,4 @@
-package main
+package pool
 
 import (
 	"context"
@@ -7,7 +7,7 @@ import (
 )
 
 type Work interface {
-	run (ctx context.Context) error
+	Run (ctx context.Context) error
 	ID () string
 }
 
@@ -26,11 +26,11 @@ type Pool struct {
 	wg 			sync.WaitGroup
 }
 
-func NewPool () *Pool {
+func NewPool (workerCount int, buffersize int ) *Pool {
 	return &Pool{
-
-		works: make(chan Work),
-		results: make(chan Result),
+		workerCount: workerCount,
+		works: make(chan Work, buffersize),
+		results: make(chan Result, buffersize),
 	}
 }
 

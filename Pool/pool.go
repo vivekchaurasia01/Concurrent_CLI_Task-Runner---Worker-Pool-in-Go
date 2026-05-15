@@ -33,12 +33,20 @@ func (p *Pool) Start (ctx context.Context) {
 	}
 	go func () {
 		p.wg.Wait()
-		p.once.Do(func() {   // Close on a closed channel = panic. Once guarantees this runs exactly once, even if Stop() is called multiple times.
+		p.once.Do(func() {   // Close on a closed channel = panic. Once guarantees this runs exactly once, even if Stop() is called multiple times...
 			close(p.results)
 		})
 	} ()
 }
 
-func (p Pool) Submit (job Job) {
-	
+func (p *Pool) Submit (job Job) {
+	p.jobs <- job  //// blocks if buffer is full — backpressure, intentional...
+}
+
+func (p *Pool) Stop () {
+	close(p.jobs)   //  this makes all worker for-range loops exit after draining....
+}
+
+func (p *Pool) Results() <-chan Result {
+    return p.results
 }

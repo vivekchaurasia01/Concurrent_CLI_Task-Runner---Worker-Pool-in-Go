@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-type Work interface {
+type Job interface {
 	Run (ctx context.Context) error
 	ID () string
 }
@@ -20,7 +20,7 @@ type Result struct {
 type Pool struct {
 	workerCount int
 
-	works 		chan Work
+	works 		chan Job
 	results 	chan Result
 
 	wg 			sync.WaitGroup
@@ -29,7 +29,7 @@ type Pool struct {
 func NewPool (workerCount int, buffersize int ) *Pool {
 	return &Pool{
 		workerCount: workerCount,
-		works: make(chan Work, buffersize),
+		works: make(chan Job, buffersize),
 		results: make(chan Result, buffersize),
 	}
 }

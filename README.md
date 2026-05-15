@@ -40,7 +40,11 @@ go run Pool/Example/manual/main.go
 
 
 
-# Concurrent CLI Task Runner — Worker Pool in Go
+<p align="center">
+
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&duration=2500&pause=1000&color=00ADD8&center=true&vCenter=true&width=700&lines=Concurrent+Worker+Pool+in+Go;Bounded+Concurrency+%7C+Graceful+Shutdown;Channels+%7C+Context+%7C+Goroutines" />
+
+</p>
 
 <p align="center">
 
@@ -59,4 +63,3 @@ go run Pool/Example/manual/main.go
 ![Stars](https://img.shields.io/github/stars/vivekchaurasia01/Concurrent_CLI_Task-Runner---Worker-Pool-in-Go?style=flat-square)
 
 </p>
-

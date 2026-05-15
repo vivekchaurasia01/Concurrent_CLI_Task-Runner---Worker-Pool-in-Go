@@ -36,3 +36,27 @@ Without the check, workers drain the entire buffer after Ctrl+C.
 
 ```bash
 go run Pool/Example/manual/main.go
+
+
+
+
+# Concurrent CLI Task Runner — Worker Pool in Go
+
+<p align="center">
+
+![Go](https://img.shields.io/badge/Go-1.25-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![Concurrency](https://img.shields.io/badge/Concurrency-Goroutines-success?style=for-the-badge)
+![Pattern](https://img.shields.io/badge/Pattern-Worker%20Pool-orange?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
+
+![Context](https://img.shields.io/badge/Context-Cancellation-red?style=flat-square)
+![Channels](https://img.shields.io/badge/Channels-Buffered-yellow?style=flat-square)
+![Shutdown](https://img.shields.io/badge/Shutdown-Graceful-critical?style=flat-square)
+![Race Safe](https://img.shields.io/badge/Race%20Safe-sync.Once-blueviolet?style=flat-square)
+
+![Last Commit](https://img.shields.io/github/last-commit/vivekchaurasia01/Concurrent_CLI_Task-Runner---Worker-Pool-in-Go?style=flat-square)
+![Repo Size](https://img.shields.io/github/repo-size/vivekchaurasia01/Concurrent_CLI_Task-Runner---Worker-Pool-in-Go?style=flat-square)
+![Stars](https://img.shields.io/github/stars/vivekchaurasia01/Concurrent_CLI_Task-Runner---Worker-Pool-in-Go?style=flat-square)
+
+</p>
+

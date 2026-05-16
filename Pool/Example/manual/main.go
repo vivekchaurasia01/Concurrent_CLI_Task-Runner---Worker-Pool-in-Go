@@ -39,7 +39,8 @@ func main () {
 	p.Start(ctx)
 
     // lets submit 500 jobs...
-    for i := 0; i < 500; i++ {
+    go func () {
+        for i := 0; i < 500; i++ {
         select {
         case <- ctx.Done():
             p.Stop()
@@ -53,14 +54,16 @@ func main () {
         }
     }
     p.Stop()
+    } ()
 
     completed := 0
     failed := 0
     for r := range p.Results() {
         if r.Err != nil {
             fmt.Printf("%s ,Error: %v, TimeDuration: %d", r.JobID,r.Err,r.Duration)
+            failed ++
         } else {
-            fmt.Printf("%s, ISDoneIn :%d\n", r.JobID,r.Duration)
+            fmt.Printf("%s, ISDoneIn :%v\n", r.JobID,r.Duration)
             completed ++
         }
         

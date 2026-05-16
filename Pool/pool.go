@@ -24,7 +24,7 @@ func NewPool (workerCount int, buffersize int ) *Pool {
 }
 
 func (p *Pool) Start (ctx context.Context) {
-	for i := 0; i <= p.workerCount; i++ {
+	for i := 0; i < p.workerCount; i++ {
 		p.wg.Add(1)
 		go func () {
 			defer p.wg.Done()

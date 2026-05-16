@@ -7,14 +7,14 @@ import (
 
 func Worker (
 	ctx context.Context,
-	works <-chan Job,
+	jobs <-chan Job,
 	results chan <- Result,
 ) {
 	// Before running the job, check if context is already cancelled.
     // Why? If shutdown happened while this job was waiting in the channel,
     // we don't want to start it.
 
-	for job := range works {
+	for job := range jobs {
 		select {
 		case <- ctx.Done():
 			return

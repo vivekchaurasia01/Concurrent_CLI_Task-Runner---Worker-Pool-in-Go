@@ -54,5 +54,48 @@ func TestPool_AllJobsComplete(t *testing.T) {
 
 // test - 02 Go_routine race Detection...
 
+func TestGo_RoutineLeak (t *testing.T) {
+	p := pool.NewPool(10,100)
+	ctx := context.Background()
 
+	p.Start(ctx)
 
+	totalJobs := 0
+
+	go func () {
+	for i := 0; i < totalJobs; i++ {
+		p.Submit(TestJob{id: fmt.Sprintf("job-%d",i)})
+	}
+	p.Stop()
+	} ()
+
+	for range p.Results() {}  //doesn't care about the VALUES,it just keeps pulling items out, making space so workers never get stuck.
+}
+
+// Test - 03 GraceFulShutDown...
+
+func TestPool_GracefulShutdown(t *testing.T) {
+    ctx, cancel := context.WithCancel(context.Background())
+
+    p := pool.NewPool(10, 100)
+    p.Start(ctx)
+
+	  // lets submit 100 jobs...
+    go func() {
+        for i := 0; i < 100; i++ {
+            select {
+            case <-ctx.Done():
+                p.Stop()
+                return
+            default:
+                p.Submit(TestJob{id: fmt.Sprintf("job-%d", i)})
+            }
+        }
+        p.Stop()
+    }()
+
+	// cancel after 50ms — simulates Ctrl+C
+    time.AfterFunc(50*time.Millisecond, cancel)
+
+    for range p.Results() {}
+}
